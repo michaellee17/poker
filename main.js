@@ -195,8 +195,10 @@ class DynamicPlayers {
   getflop() {
     this.flop = [
       this.deck.deck[this.players.count * 2 + 1],
+      this.deck.deck[this.players.count * 2 + 2],
       this.deck.deck[this.players.count * 2 + 3],
       this.deck.deck[this.players.count * 2 + 5],
+      this.deck.deck[this.players.count * 2 + 7],
     ];
     console.log("this.flop", this.flop);
   }

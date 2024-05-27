@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  height: 100vh;
+  background-color: #004d00; /* 深綠色 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table {
+  width: 75%; 
+  height: 80%; 
+  background-color: #006400; /* 更深的綠色 */
+  border-radius: 50%/30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.innerCircle{
+  width: 75%; 
+  height: 89%; 
+  background-color: #8FBC8F; /* 更淺的綠色 */
+  border-radius: 50%/30%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flop{
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  gap: 10px;
+}
+.card{
+  width: 32px;
+  height: 40px;
+  background-color: #fff;
+  position: relative;
+}
+.card .number{
+  position: absolute;
+  right: 3px;
+  bottom: 2px;
+  font-size: 16px;
+}
+.card .flower{
+  position: absolute;
+  left: 3px;
+  top: 3px;
+}
+.flower.diamonds{
+  width: 12px;
+}
+.seat{
+  position: absolute;
+  color: #fff;
+  font-size: 14px;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.seat1{
+  top: 190px;
+  left: -30px;
+}
+.seat2{
+  top: 20px;
+  left: 30px;
+}
+.seat3{
+  top: 20px;
+  right: 30px;
+}
+.seat4{
+  top: 150px;
+  right: -28px;
+}
+.seat5{
+  top: 310px;
+  right:-30px;
+}
+.seat6{
+  top: 470px;
+  right:-30px;
+}
+.seat7{
+  top: 620px;
+  right:24px;
+}
+.seat8{
+  top: 620px;
+  left:24px;
+}
+.seat9{
+  top: 440px;
+  left:-30px;
+}

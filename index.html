@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="./main.js"></script>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="table">
+        <div class="seat seat1">1</div>
+        <div class="seat seat2">2</div>
+        <div class="seat seat3">3</div>
+        <div class="seat seat4">4</div>
+        <div class="seat seat5">5</div>
+        <div class="seat seat6">6</div>
+        <div class="seat seat7">7</div>
+        <div class="seat seat8">8</div>
+        <div class="seat seat9">9</div>
+        <div class="innerCircle">
+          <div class="flop">
+            <div class="card card0">
+              <div class="number"></div>
+              <img width="10px" class="flower" alt="" />
+            </div>
+            <div class="card card1">
+              <div class="number"></div>
+              <img width="10px" class="flower" alt="" />
+            </div>
+            <div class="card card2">
+              <div class="number"></div>
+              <img width="10px" class="flower" alt="" />
+            </div>
+            <div class="card card3" style="display: none">
+              <div class="number"></div>
+              <img width="10px" class="flower" alt="" />
+            </div>
+            <div class="card card4" style="display: none">
+              <div class="number"></div>
+              <img width="10px" class="flower" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    console.log(`output->Dynamic`, Dynamic);
+    //處理公牌
+    for (let i = 0; i < 5; i++) {
+      let cardNumber = document.querySelector(`.card${i} .number`);
+      let cardFlower = document.querySelector(`.card${i} .flower`);
+      cardNumber.innerHTML = Dynamic.flop[i].rank;
+      cardFlower.src = `./img/${Dynamic.flop[i].suit}.jpg`;
+      cardFlower.classList.add(Dynamic.flop[i].suit);
+      // if (Dynamic.flop[i - 1]) {
+      //   cardNumber.innerHTML = Dynamic.flop[i - 1].rank;
+      // } else {
+      //   console.log(`Dynamic.flop[${i - 1}] is undefined`);
+      // }
+    }
+    console.log(`output->Players`, Players);
+  </script>
 </html>
