@@ -68,7 +68,7 @@
   align-items: center;
 }
 .seat1{
-  top: 190px;
+  top: 250px;
   left: -30px;
 }
 .seat2{
@@ -80,15 +80,15 @@
   right: 30px;
 }
 .seat4{
-  top: 150px;
+  top: 170px;
   right: -28px;
 }
 .seat5{
-  top: 310px;
+  top: 350px;
   right:-30px;
 }
 .seat6{
-  top: 470px;
+  top: 520px;
   right:-30px;
 }
 .seat7{
@@ -100,6 +100,77 @@
   left:24px;
 }
 .seat9{
-  top: 440px;
+  top: 480px;
   left:-30px;
+}
+/* .name{
+  position: absolute;
+  top: -20px;
+} */
+.info{
+  position: absolute;
+  color:#000000;
+  text-align: center;
+}
+.cards{
+  display: flex;
+}
+.seat1 .info{
+  top: -90px;
+  left: -15px;
+}
+.seat2 .info{
+  top: -90px;
+  left: -15px;
+}
+.seat3 .info{
+  top: -90px;
+  left: -15px;
+}
+.seat4 .info{
+  top: -90px;
+  left: -20px;
+}
+.seat5 .info{
+  top: -90px;
+  left: -20px;
+}
+.seat6 .info{
+  top: -90px;
+  left: -20px;
+}
+.seat7 .info{
+  top: 35px;
+  left: 36px;
+}
+.seat8 .info{
+  top: 35px;
+  left: -61px;
+}
+.seat9 .info{
+  top: -90px;
+  left: -15px;
+}
+.chip{
+  padding: 2px 0;
+  background-color: yellow;
+}
+.name{
+  padding: 2px 0;
+  color: #ffffff;
+  background-color: brown;
+}
+.topic{
+  position: absolute;
+  top: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.topic h6{
+  color:red;
+  font-size: 16px;
+}
+.topic span{
+  color:grey;
+  font-size: 14px;
 }

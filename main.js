@@ -48,7 +48,6 @@ class StaticPlayers {
   constructor() {
     this.playerInfo = [];
     this.count = 0;
-    // this.createPlayer(name,seat,chip)
   }
 
   createPlayer(name, seat, chip) {
@@ -69,15 +68,18 @@ Players.createPlayer("志豪", 4, 1000);
 Players.createPlayer("時雨", 5, 1000);
 Players.createPlayer("車仔", 6, 1000);
 Players.createPlayer("牛哥", 7, 1000);
+Players.createPlayer("狐狸", 8, 1000);
+Players.createPlayer("世宴", 9, 1000);
 
 //動態玩家資訊 牌局位置 牌組
 class DynamicPlayers {
   constructor(players, deck) {
     this.deck = deck;
     this.players = players;
-    this.chooseButton();
+    this.allPlayers = players["playerInfo"];
     this.startButtonSeat = 0;
     this.flop = [];
+    this.chooseButton();
   }
   //抽button
   async chooseButton() {
@@ -98,7 +100,7 @@ class DynamicPlayers {
       3: 3,
       2: 2,
     };
-    let allPlayers = [...this.players.playerInfo];
+    // let allPlayers = [...this.players.playerInfo];
     //每人抽卡
     while (randomIndexes.length < this.players.playerInfo.length) {
       let randomIndex = Math.floor(Math.random() * deckSize);
@@ -118,6 +120,7 @@ class DynamicPlayers {
     let maxCardValue = Math.max(
       ...this.players.playerInfo.map((player) => player.cardValue)
     );
+
     let maxCardPlayers = this.players.playerInfo.filter(
       (player) => player.cardValue === maxCardValue
     );
@@ -125,10 +128,11 @@ class DynamicPlayers {
     //若多人最大則再重抽
     if (maxCardPlayers.length > 1) {
       this.players.playerInfo = maxCardPlayers;
-      this.chooseButton();
+      await this.chooseButton();
     } else {
+      // this.players.playerInfo = allPlayers;
       this.startButtonSeat = maxCardPlayers[0].seat;
-      this.players.playerInfo = allPlayers.map((player) => {
+      this.players.playerInfo = this.allPlayers.map((player) => {
         //去除抽button時所需的所有資訊 後面用不到
         let {
           card,
@@ -169,6 +173,19 @@ class DynamicPlayers {
       case 8:
         positions = ["BUTTON", "SB", "BB", "UTG", "UTG+1", "MP", "HJ", "CO"];
         break;
+      case 9:
+        positions = [
+          "BUTTON",
+          "SB",
+          "BB",
+          "UTG",
+          "UTG+1",
+          "UTG+2",
+          "MP",
+          "HJ",
+          "CO",
+        ];
+        break;
       default:
         break;
     }
@@ -200,7 +217,6 @@ class DynamicPlayers {
       this.deck.deck[this.players.count * 2 + 5],
       this.deck.deck[this.players.count * 2 + 7],
     ];
-    console.log("this.flop", this.flop);
   }
 }
 let Dynamic = new DynamicPlayers(Players, deck);
