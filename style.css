@@ -137,7 +137,7 @@
 }
 .seat6 .info{
   top: -90px;
-  left: -20px;
+  left: -10px;
 }
 .seat7 .info{
   top: 35px;
@@ -173,4 +173,10 @@
 .topic span{
   color:grey;
   font-size: 14px;
+}
+.pool{
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 10px;
 }

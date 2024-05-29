@@ -80,7 +80,32 @@ class DynamicPlayers {
     this.startButtonSeat = 0;
     this.flop = [];
     this.chooseButton();
+    this.balance = 50;
+    this.pool = 0;
+    this.activePlayer = {};
   }
+
+  async preFlop() {
+    this.players.playerInfo.forEach((player) => {
+      if (player.position === "SB" || player.position === "BB") {
+        player.bet = 50;
+        player.chip -= 50;
+      }
+    });
+    this.activePlayer = this.players.playerInfo.filter(
+      (player) => player.position === "UTG"
+    )[0];
+    console.log(`output->activePlayer`, this.activePlayer);
+    this.computePool();
+  }
+
+  //計算總池
+  computePool() {
+    this.pool = this.players.playerInfo.reduce((acc, player) => {
+      return acc + (player.bet || 0);
+    }, 0);
+  }
+
   //抽button
   async chooseButton() {
     let deckSize = 52;
@@ -217,6 +242,40 @@ class DynamicPlayers {
       this.deck.deck[this.players.count * 2 + 5],
       this.deck.deck[this.players.count * 2 + 7],
     ];
+  }
+
+  //渲染公牌
+  renderFlop() {
+    //處理公牌
+    for (let i = 0; i < 5; i++) {
+      let cardNumber = document.querySelector(`.card${i} .number`);
+      let cardFlower = document.querySelector(`.card${i} .flower`);
+      cardNumber.innerHTML = Dynamic.flop[i].rank;
+      cardFlower.src = `./img/${Dynamic.flop[i].suit}.jpg`;
+      cardFlower.classList.add(Dynamic.flop[i].suit);
+    }
+  }
+
+  //渲染玩家手牌
+  renderPlayerCard() {
+    for (let i = 0; i < Players.playerInfo.length; i++) {
+      let seat = document.querySelector(`.seat${i + 1}`);
+      let name = seat.querySelector(".name");
+      name.innerHTML = Players.playerInfo[i].name;
+      let cardNumber0 = seat.querySelector(".playerCard0 .number");
+      let cardFlower0 = seat.querySelector(".playerCard0 .flower");
+      let cardNumber1 = seat.querySelector(".playerCard1 .number");
+      let cardFlower1 = seat.querySelector(".playerCard1 .flower");
+      let chip = seat.querySelector(".chip");
+
+      chip.innerHTML = Players.playerInfo[i].chip;
+      cardNumber0.innerHTML = Players.playerInfo[i].card[0].rank;
+      cardFlower0.src = `./img/${Players.playerInfo[i].card[0].suit}.jpg`;
+      cardFlower0.classList.add(Players.playerInfo[i].card[0].suit);
+      cardNumber1.innerHTML = Players.playerInfo[i].card[1].rank;
+      cardFlower1.src = `./img/${Players.playerInfo[i].card[1].suit}.jpg`;
+      cardFlower1.classList.add(Players.playerInfo[i].card[1].suit);
+    }
   }
 }
 let Dynamic = new DynamicPlayers(Players, deck);

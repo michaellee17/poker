@@ -164,6 +164,7 @@
           <span>9</span>
         </div>
         <div class="topic">
+          <h5 class="pool"></h5>
           <h6>多彈德州補魚廠</h6>
           <span>50/50 一萬入場</span>
           <span>每週五晚上kk撞球場</span>
@@ -196,33 +197,9 @@
     </div>
   </body>
   <script>
-    //處理公牌
-    for (let i = 0; i < 5; i++) {
-      let cardNumber = document.querySelector(`.card${i} .number`);
-      let cardFlower = document.querySelector(`.card${i} .flower`);
-      cardNumber.innerHTML = Dynamic.flop[i].rank;
-      cardFlower.src = `./img/${Dynamic.flop[i].suit}.jpg`;
-      cardFlower.classList.add(Dynamic.flop[i].suit);
-    }
-    console.log(`output->Players.playerInfo`, Players.playerInfo);
-    for (let i = 0; i < Players.playerInfo.length; i++) {
-      let seat = document.querySelector(`.seat${i + 1}`);
-      let name = seat.querySelector(".name");
-      name.innerHTML = Players.playerInfo[i].name;
-      let cardNumber0 = seat.querySelector(".playerCard0 .number");
-      let cardFlower0 = seat.querySelector(".playerCard0 .flower");
-      let cardNumber1 = seat.querySelector(".playerCard1 .number");
-      let cardFlower1 = seat.querySelector(".playerCard1 .flower");
-      let chip = seat.querySelector(".chip");
-
-      chip.innerHTML = Players.playerInfo[i].chip;
-      cardNumber0.innerHTML = Players.playerInfo[i].card[0].rank;
-      cardFlower0.src = `./img/${Players.playerInfo[i].card[0].suit}.jpg`;
-      cardFlower0.classList.add(Players.playerInfo[i].card[0].suit);
-      cardNumber1.innerHTML = Players.playerInfo[i].card[1].rank;
-      cardFlower1.src = `./img/${Players.playerInfo[i].card[1].suit}.jpg`;
-      cardFlower1.classList.add(Players.playerInfo[i].card[1].suit);
-    }
+    Dynamic.renderFlop();
+    Dynamic.renderPlayerCard();
+    //顯示button
     Players.playerInfo.map((item) => {
       if (item.position === "BUTTON") {
         let seat = document.querySelector(`.seat${item.seat}`);
@@ -233,5 +210,9 @@
         text.innerHTML = "BTN";
       }
     });
+    let pool = document.querySelector(".pool");
+    Dynamic.preFlop();
+    pool.innerHTML = `底池${Dynamic.pool}`;
+    Dynamic.renderPlayerCard();
   </script>
 </html>
