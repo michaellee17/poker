@@ -83,6 +83,7 @@ class DynamicPlayers {
     this.balance = 50;
     this.pool = 0;
     this.activePlayer = {};
+    this.stage = "flop"; //flop, turn, river
   }
 
   async preFlop() {
@@ -95,7 +96,6 @@ class DynamicPlayers {
     this.activePlayer = this.players.playerInfo.filter(
       (player) => player.position === "UTG"
     )[0];
-    console.log(`output->activePlayer`, this.activePlayer);
     this.computePool();
   }
 
@@ -104,6 +104,19 @@ class DynamicPlayers {
     this.pool = this.players.playerInfo.reduce((acc, player) => {
       return acc + (player.bet || 0);
     }, 0);
+  }
+
+  stageNext() {
+    if (this.stage === "flop") {
+      this.stage = "turn";
+      let card3 = document.querySelector(".card3");
+      card3.classList.remove("hidden");
+    } else if (this.stage === "turn") {
+      let card4 = document.querySelector(".card4");
+      card4.classList.remove("hidden");
+      this.stage = "river";
+    } else if (this.stage === "river") {
+    }
   }
 
   //抽button
@@ -223,6 +236,7 @@ class DynamicPlayers {
       if (player) {
         player.position = positions[i];
         player.card = [this.deck.deck[i], this.deck.deck[i + positions.length]];
+        // player.cardRank = this.caculateCardRank(player.card);
       } else {
         console.error(
           `No player found at seat ${
@@ -258,6 +272,7 @@ class DynamicPlayers {
 
   //渲染玩家手牌
   renderPlayerCard() {
+    console.log(`output->Players.playerInfo`, Players.playerInfo);
     for (let i = 0; i < Players.playerInfo.length; i++) {
       let seat = document.querySelector(`.seat${i + 1}`);
       let name = seat.querySelector(".name");

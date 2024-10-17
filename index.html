@@ -183,15 +183,19 @@
               <div class="number"></div>
               <img width="10px" class="flower" alt="" />
             </div>
-            <div class="card card3">
+            <div class="card card3 hidden">
               <div class="number"></div>
               <img width="10px" class="flower" alt="" />
             </div>
-            <div class="card card4">
+            <div class="card card4 hidden">
               <div class="number"></div>
               <img width="10px" class="flower" alt="" />
             </div>
           </div>
+        </div>
+        <div class="btns">
+          <button class="new">重新發牌</button>
+          <button class="next">下一步</button>
         </div>
       </div>
     </div>
@@ -199,7 +203,6 @@
   <script>
     Dynamic.renderFlop();
     Dynamic.renderPlayerCard();
-    //顯示button
     Players.playerInfo.map((item) => {
       if (item.position === "BUTTON") {
         let seat = document.querySelector(`.seat${item.seat}`);
@@ -214,5 +217,15 @@
     Dynamic.preFlop();
     pool.innerHTML = `底池${Dynamic.pool}`;
     Dynamic.renderPlayerCard();
+
+    let newButton = document.querySelector(".new");
+    newButton.addEventListener("click", () => {
+      window.location.reload();
+    });
+
+    let nextButton = document.querySelector(".next");
+    nextButton.addEventListener("click", () => {
+      Dynamic.stageNext();
+    });
   </script>
 </html>

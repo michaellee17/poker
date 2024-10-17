@@ -180,3 +180,23 @@
   text-align: center;
   margin-bottom: 10px;
 }
+.btns{
+  position: absolute;
+  bottom:250px;
+}
+.btns button{
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid #fff;
+}
+.btns button.new{
+  background-color: red;
+  color: #fff;
+}
+.btns button.next{
+  background-color: yellow;
+  color: brown;
+}
+.hidden{
+  display: none;
+}
